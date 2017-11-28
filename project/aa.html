@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+</head>
+<body>
+<select id="sel">
+    <option>111</option>
+    <option>222</option>
+</select>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main1" style="height:400px"></div>
+<div id="main2" style="height:400px"></div>
+<!-- ECharts单文件引入 -->
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script src="dist/js/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        console.log($("#sel").val());
+    });
+
+    $("#sel").change(function () {
+        console.log($(this).val())
+    });
+
+    $("#sel").on("change",function () {
+        console.log($(this).val());
+    });
+
+    // 路径配置
+    require.config({
+        paths: {
+            echarts: 'http://echarts.baidu.com/build/dist'
+        }
+    });
+
+    // 使用
+    require(
+        [
+            'echarts',
+            'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+            'echarts/chart/line' // 使用柱状图就加载bar模块，按需加载
+        ],
+        function (ec) {
+            // 基于准备好的dom，初始化echarts图表
+            var option = {
+                tooltip: {
+                    show: true
+                },
+                legend: {
+                    data:['销量']
+                },
+                xAxis : [
+                    {
+                        type : 'category',
+                        data : ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                    }
+                ],
+                yAxis : [
+                    {
+                        type : 'value'
+                    }
+                ],
+                series : [
+                    {
+                        "name":"销量",
+                        "symbol":'none',
+                        "type":"line",
+                        "data":[5, 20, 40, 10, 10, 20]
+                    }
+                ]
+            };
+            for(var i=1; i<=2; i++){
+                var myChart = ec.init(document.getElementById('main'+i));
+                // 为echarts对象加载数据
+                myChart.setOption(option);
+            }
+        }
+    );
+</script>
+<script>
+    var str = "nininihaoa";
+    var o = {};
+    for (var i = 0, length = str.length; i < length; i++) {
+        var char = str.charAt(i);
+        if (o[char]) {
+            o[char]++;  //次数加1
+        } else {
+            o[char] = 1;    //若第一次出现，次数记为1
+        }
+    }
+    //console.log(o);   //输出的是完整的对象，记录着每一个字符及其出现的次数
+    //遍历对象，找到出现次数最多的字符的次数
+    var max = 0;
+    for (var key in o) {
+        if (max < o[key]) {
+            max = o[key];   //max始终储存次数最大的那个
+        }
+    }
+    for (var key in o) {
+        if (o[key] == max) {
+            //console.log(key);
+            //console.log("最多的字符是" + key);
+            //console.log("出现的次数是" + max);
+        }
+    }
+</script>
+</body>

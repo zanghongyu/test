@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html,body{
+    background: none;
+}
+.tablename{
+    height: 200px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+.tablename ul{
+    list-style: none;
+}
+.tablename ul li{
+    line-height: 30px;
+}
+.import{
+    float: right;
+    margin-top: 20px;
+}

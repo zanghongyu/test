@@ -1,0 +1,18 @@
+.tables{
+    height: 400px;
+    overflow-y: scroll;
+}
+table{
+    background: #fff;
+}
+.btn{
+}
+.txt_top{
+    margin-bottom: 10px;
+}
+.txt{
+    display: none;
+}
+.table_txt{
+    display: none;
+}
